@@ -1,35 +1,46 @@
 import { Button, Col, Row } from "antd";
+import styles from "./Signin.module.css";
 
 export default function Signin() {
   return (
-    <Row align="middle">
+    <Row align="middle" className={styles.sigin_row}>
       <Col span={24}>
-        <Row>
+        <Row className={styles.sigin_contents}>
           <Col span={12}></Col>
           <Col span={12}>
-            <div>GR Books</div>
-            <div>극락으로 갈 당신의 지식들</div>
-            <div />
-            <div>
+            <div className={styles.sigin_title}>GR Books</div>
+            <div className={styles.sigin_subtitle}>
+              극락으로 갈 당신의 지식들
+            </div>
+            <div className={styles.sigin_underline} />
+            <div className={styles.email_title}>
               Email
-              <span>*</span>
+              <span className={styles.required}>*</span>
             </div>
-            <div>
-              <input placeholder="Email" autoComplete="email" name="email" />
+            <div className={styles.input_area}>
+              <input
+                placeholder="Email"
+                autoComplete="email"
+                name="email"
+                className={styles.input}
+              />
             </div>
-            <div>
+            <div className={styles.password_title}>
               Password
-              <span>*</span>
+              <span className={styles.required}>*</span>
             </div>
-            <div>
+            <div className={styles.input_area}>
               <input
                 type="password"
                 autoComplete="current-password"
                 name="email"
+                className={styles.input}
               />
             </div>
-            <div>
-              <Button size="large">Sign In</Button>
+            <div className={styles.button_area}>
+              <Button size="large" className={styles.button}>
+                Sign In
+              </Button>
             </div>
           </Col>
         </Row>
