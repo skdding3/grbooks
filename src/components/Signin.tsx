@@ -1,4 +1,5 @@
 import { Button, Col, Row } from "antd";
+import { sign } from "crypto";
 import styles from "./Signin.module.css";
 
 export default function Signin() {
@@ -6,7 +7,13 @@ export default function Signin() {
     <Row align="middle" className={styles.signin_row}>
       <Col span={24}>
         <Row className={styles.signin_contents}>
-          <Col span={12}></Col>
+          <Col span={12}>
+            <img
+              src="/grbooks1.png"
+              alt="Signin"
+              className={styles.signin_bg}
+            />
+          </Col>
           <Col span={12}>
             <div className={styles.signin_title}>GR Books</div>
             <div className={styles.signin_subtitle}>
@@ -15,7 +22,7 @@ export default function Signin() {
             <div className={styles.signin_underline} />
             <div className={styles.email_title}>
               Email
-              <span className={styles.required}>*</span>
+              <span className={styles.required}> *</span>
             </div>
             <div className={styles.input_area}>
               <input
@@ -27,7 +34,7 @@ export default function Signin() {
             </div>
             <div className={styles.password_title}>
               Password
-              <span className={styles.required}>*</span>
+              <span className={styles.required}> *</span>
             </div>
             <div className={styles.input_area}>
               <input
