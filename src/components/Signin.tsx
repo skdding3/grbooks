@@ -3,16 +3,16 @@ import styles from "./Signin.module.css";
 
 export default function Signin() {
   return (
-    <Row align="middle" className={styles.sigin_row}>
+    <Row align="middle" className={styles.signin_row}>
       <Col span={24}>
-        <Row className={styles.sigin_contents}>
+        <Row className={styles.signin_contents}>
           <Col span={12}></Col>
           <Col span={12}>
-            <div className={styles.sigin_title}>GR Books</div>
-            <div className={styles.sigin_subtitle}>
+            <div className={styles.signin_title}>GR Books</div>
+            <div className={styles.signin_subtitle}>
               극락으로 갈 당신의 지식들
             </div>
-            <div className={styles.sigin_underline} />
+            <div className={styles.signin_underline} />
             <div className={styles.email_title}>
               Email
               <span className={styles.required}>*</span>
