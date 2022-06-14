@@ -1,8 +1,11 @@
 import { Button, Col, Row } from "antd";
-import { sign } from "crypto";
+import { useRef } from "react";
 import styles from "./Signin.module.css";
 
 export default function Signin() {
+  const refEmail = useRef<HTMLInputElement>(null);
+  const refPassword = useRef<HTMLInputElement>(null);
+
   return (
     <Row align="middle" className={styles.signin_row}>
       <Col span={24}>
@@ -29,6 +32,7 @@ export default function Signin() {
                 placeholder="Email"
                 autoComplete="email"
                 name="email"
+                ref={refEmail}
                 className={styles.input}
               />
             </div>
@@ -40,7 +44,7 @@ export default function Signin() {
               <input
                 type="password"
                 autoComplete="current-password"
-                name="email"
+                ref={refPassword}
                 className={styles.input}
               />
             </div>
