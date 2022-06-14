@@ -1,4 +1,8 @@
+import { Suspense } from "react";
 import { createActions, handleActions } from "redux-actions";
+import { put, takeEvery } from "redux-saga/effects";
+import userService from "../../services/UserService";
+import { LoginReqType } from "../../types";
 
 interface AuthState {
   token: string | null;
@@ -46,5 +50,23 @@ const reducer = handleActions<AuthState, string>(
 export default reducer;
 
 // saga
+export const { login, logout } = createActions("LOGIN", "LOGOUT", { prefix });
 
-export function* authSaga() {}
+function* loginSaga(action: Action<LoginReqType>) {
+  try {
+    yield put(pending());
+    const token: string = yield call(userService.login, action.payload);
+    // localstorage
+    yield put(success(token));
+    // push
+  } catch (error) {
+    yield put(fail(new Error(error?.response?.date?.error || "UNKNOWN_ERROR")));
+  }
+}
+
+function* logoutSaga() {}
+
+export function* authSaga() {
+  yield takeEvery(`${prefix}/LOGIN`, loginSaga);
+  yield takeEvery(`${prefix}/LOGOUT`, logoutSaga);
+}

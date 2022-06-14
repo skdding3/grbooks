@@ -1,8 +1,15 @@
+import { click } from "@testing-library/user-event/dist/click";
 import { Button, Col, Row } from "antd";
 import { useRef } from "react";
 import styles from "./Signin.module.css";
+import { LoginReqType } from "../types";
 
-export default function Signin() {
+interface SigninProps {
+  login: (reqData: LoginReqType) => void;
+}
+
+const Signin: React.FC<SigninProps> = ({ login }) => {
+  // react 18은 <Input>이 안먹혀서 스택오버플로우로 해결
   const refEmail = useRef<HTMLInputElement>(null);
   const refPassword = useRef<HTMLInputElement>(null);
 
@@ -49,7 +56,7 @@ export default function Signin() {
               />
             </div>
             <div className={styles.button_area}>
-              <Button size="large" className={styles.button}>
+              <Button size="large" className={styles.button} onClick={click}>
                 Sign In
               </Button>
             </div>
@@ -58,4 +65,13 @@ export default function Signin() {
       </Col>
     </Row>
   );
-}
+
+  function click() {
+    const email = refEmail.current!.value;
+    const password = refPassword.current!.value;
+
+    login({ email, password });
+  }
+};
+
+export default Signin;
