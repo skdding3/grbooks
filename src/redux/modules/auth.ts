@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Action, createActions, handleActions } from "redux-actions";
 import { call, put, takeEvery } from "redux-saga/effects";
+import TokenService from "../../services/TokenService";
 import userService from "../../services/UserService";
 import { LoginReqType } from "../../types";
 
@@ -57,8 +58,10 @@ function* loginSaga(action: Action<LoginReqType>) {
     yield put(pending());
     const token: string = yield call(userService.login, action.payload);
     // localstorage
+    TokenService.set(token);
     yield put(success(token));
     // push
+    yield put(push("/"));
   } catch (error: any) {
     yield put(fail(new Error(error?.response?.date?.error || "UNKNOWN_ERROR")));
   }
