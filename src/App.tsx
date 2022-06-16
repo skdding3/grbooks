@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import Home from "./pages/Home";
 import Edit from "./pages/Edit";
@@ -9,26 +9,24 @@ import NotFound from "./pages/NotFound";
 import Detail from "./pages/Detail";
 import { ErrorBoundary } from "react-error-boundary";
 import Error from "./pages/Error";
-import { History } from "history";
+import { history } from "./redux/create";
 
-function App() {
+const App = () => {
   return (
     <ErrorBoundary FallbackComponent={Error}>
-      {/* react router v6 */}
-      <ConnectedRouter element={<History />}>
-        <Routes>
-          <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/book/:id" element={<Detail />} />
+      <ConnectedRouter history={history}>
+        <Switch>
+          <Route path="/edit/:id" component={Edit} />
+          <Route path="/book/:id" component={Detail} />
           {/* 책 추가 */}
-          <Route path="/add" element={<Add />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/" element={<Home />} />
-          {/* 낫파운드 v6 적용 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+          <Route path="/add" component={Add} />
+          <Route path="/signin" component={Signin} />
+          <Route path="/" component={Home} />
+          <Route component={NotFound} />
+        </Switch>
       </ConnectedRouter>
     </ErrorBoundary>
   );
-}
+};
 
 export default App;
